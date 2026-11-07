@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: teal;
+  --color-danger: crimson;
+  --color-ok: green;
+  --font-sans: "Cairo", Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#f5f5f5] font-sans text-[#222];
+  }
+  h1 { @apply text-[2em] font-bold; }
+  h2 { @apply text-[1.5em] font-bold; }
+  h3 { @apply text-[1.17em] font-bold; }
+  h4 { @apply font-bold; }
+  button { @apply cursor-pointer; }
+  button:disabled { @apply cursor-not-allowed; }
+}
+
+@layer components {
+  /* ---------- الأقسام العلوية ---------- */
+  .hero { @apply bg-brand px-6 py-16 text-center text-white max-sm:px-4 max-sm:py-10; }
+  .hero h1 { @apply mb-3 text-[2.4rem] max-sm:text-[1.8rem]; }
+  .hero p { @apply mx-auto mb-6 max-w-[520px] text-[1.1rem] opacity-90; }
+
+  /* ---------- البطاقات والشبكات ---------- */
+  .card-box { @apply rounded-[10px] border border-[#ddd] bg-white p-4 shadow-[0_2px_6px_rgba(0,0,0,0.08)]; }
+  .grid-cards { @apply grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4; }
+  .badge { @apply inline-block rounded-full px-3 text-white; }
+
+  /* ---------- الأزرار والروابط ---------- */
+  .pill-btn {
+    @apply m-4 inline-block rounded-full border border-brand bg-transparent px-4 py-2 font-bold text-brand transition-colors hover:bg-brand/10;
+  }
+  .pill-link {
+    @apply inline-block rounded-full border border-brand px-4 py-2 text-brand transition-colors hover:bg-brand/10;
+  }
+  .filter-pill {
+    @apply rounded-full border border-brand px-3.5 py-1.5 text-brand transition-colors hover:bg-brand/10;
+  }
+  .filter-pill-active { @apply bg-brand text-white hover:bg-brand; }
+
+  .btn-save { @apply rounded-md bg-brand px-[18px] py-2 text-white hover:opacity-90 disabled:opacity-60; }
+  .btn-cancel { @apply rounded-md border border-[#ccc] bg-white px-[18px] py-2 text-[#444] hover:bg-[#f3f3f3]; }
+  .btn-danger { @apply mx-2 my-4 rounded-md bg-danger px-4 py-2 text-white; }
+  .btn-danger-save { @apply rounded-md bg-danger px-[18px] py-2 text-white disabled:opacity-60; }
+
+  /* ---------- النماذج والحوارات ---------- */
+  .field { @apply w-full rounded-md border border-[#ccc] bg-white px-3 py-2; }
+  .error-text { @apply text-[0.9rem] text-danger; }
+  .dialog { @apply m-auto w-[min(420px,90vw)] rounded-[10px] border-none p-6 backdrop:bg-black/40; }
+
+  /* ---------- شريط التنقل ---------- */
+  .nav-link { @apply flex rounded-md px-3.5 py-1.5 text-[19px] text-white transition-colors hover:bg-white/20; }
+  .nav-link-active { @apply bg-white/35 font-semibold; }
+  .lang-btn { @apply rounded-md border border-white bg-transparent px-3.5 py-1.5 text-base text-white hover:bg-white/20; }
+
+  /* ---------- صفحات التفاصيل ---------- */
+  .section-pad { @apply p-4; }
+  .section-pad h2 { @apply mb-2 text-brand; }
+  .history { @apply list-none px-4; }
+  .history li { @apply border-b border-[#eee] py-2 text-[#444]; }
+  .history a { @apply font-semibold text-brand hover:underline; }
+}

@@ -1,0 +1,40 @@
+// use prisma-8
+enum Role {
+  ADMIN
+  LIBRARIAN
+  MEMBER
+}
+
+model User {
+  id        Int                        @id @default(autoincrement())
+  email     String                     @unique
+  username  String                     @unique
+  password  String
+  name      String
+  role      Role                       @default(MEMBER)
+  joinedAt  TimestamptzString          @default(now())
+  active    Boolean                    @default(true)
+  createdAt TimestamptzString          @default(now())
+  updatedAt temporal.updatedAtString()
+  loans     Loan[]
+}
+model Book {
+  id        Int     @id @default(autoincrement())
+  title     String
+  author    String
+  category  String
+  year      Int
+  available Boolean @default(true)
+  loans     Loan[]
+}
+
+
+model Loan {
+  id         Int                @id @default(autoincrement())
+  bookId     Int
+  memberId   Int
+  book       Book               @relation(fields: [bookId], references: [id])
+  member     User               @relation(fields: [memberId], references: [id])
+  borrowedAt TimestamptzString  @default(now())
+  returnedAt TimestamptzString?
+}
